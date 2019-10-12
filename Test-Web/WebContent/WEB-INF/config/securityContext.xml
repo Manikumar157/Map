@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/security 
+		http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+
+	<beans:bean id="filterChainProxy"
+		class="org.springframework.security.web.FilterChainProxy">
+		<filter-chain-map path-type="ant">
+			<filter-chain pattern="/**"
+				filters="securityContextPersistenceFilter,
+						basicAuthenticationFilter,
+						exceptionTranslationFilter,
+						filterSecurityInterceptor,
+						multipartFilter" />
+		</filter-chain-map>
+	</beans:bean>
+
+	<beans:bean id="securityContextPersistenceFilter"
+		class="org.springframework.security.web.context.SecurityContextPersistenceFilter" />
+
+	<beans:bean id="basicAuthenticationFilter"
+		class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
+		<beans:property name="authenticationManager" ref="authenticationManager" />
+		<beans:property name="filterProcessesUrl" value="/login" />
+		<beans:property name="authenticationSuccessHandler">
+			<beans:bean
+				class="org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler">
+				<beans:property name="defaultTargetUrl" value="/welcome.htm" />
+			</beans:bean>
+		</beans:property>
+		<beans:property name="authenticationFailureHandler">
+			<beans:bean
+				class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
+				<beans:property name="defaultFailureUrl" value="/loginFailure.htm" />
+				<beans:property name="useForward" value="true" />
+			</beans:bean>
+		</beans:property>
+	</beans:bean>
+
+	<beans:bean id="exceptionTranslationFilter"
+		class="org.springframework.security.web.access.ExceptionTranslationFilter">
+		<beans:property name="authenticationEntryPoint" ref="authenticationEntryPoint" />
+		<beans:property name="accessDeniedHandler" ref="accessDeniedHandler" />
+	</beans:bean>
+
+	<beans:bean id="filterSecurityInterceptor"
+		class="org.springframework.security.web.access.intercept.FilterSecurityInterceptor">
+		<beans:property name="authenticationManager" ref="authenticationManager" />
+		<beans:property name="accessDecisionManager" ref="accessDecisionManager" />
+		<beans:property name="securityMetadataSource">
+			<filter-security-metadata-source>
+				<!-- Login Logout Management -->
+		<intercept-url pattern="/login.jsp*" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+		<intercept-url pattern="/showForgotPasswordForm.htm" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+		<intercept-url pattern="/*LocateUs*.htm" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+		<intercept-url pattern="/loginFailure.htm" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+		<intercept-url pattern="/getCities.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/getQuarters.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/resetLoginPin.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/resetTxnPin.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/changeApplicationStatus.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/changeCustomerStatus.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/getPhoto.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/welcome.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/verifyOTPForm.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/logout.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/home.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/selectTransactionForm.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/selectBusinessPartnerTransactionForm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*AccountDetails*.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/processTransaction.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*Transaction*.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/generatePDFTxnStatement.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/viewRequests.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/reinitiateRequest.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/getBranches.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*Bank*.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*card*.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*Branch*.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*ClearanceHouse*.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*Customer*.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*Agent*.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*CustomerProfile*.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*Countries.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*Currenc*.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*Country.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*Cities.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*City.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*Quarters.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*Quarter.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*changePassword.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*Operator*.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*Denomination*.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*Voucher*.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*ServiceCharge*.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*SmsLog*.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*StakeHolder*.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*Bill*.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/viewDetailsByPolicyNo.htm"
+			access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*Report*.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*TransactionRule*.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/getBrankByChPoolID.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/getAccountHeadByBankId.htm"
+			access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*User*.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*ChartDataValidation*.htm"
+			access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*AuditLog*.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*Access*.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*Version*.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*Visited*.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*Transaction*.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*PrivilegeDetails*.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/getUsersByRoleId.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*txn*.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*MenuConfig*.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/saveThemeConfig.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*themeConfigForm.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*webColor*.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/exportToXLSForLocations.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*businessPartner*.htm" access="IS_AUTHENTICATED_FULLY" /> 
+		<intercept-url pattern="/*Adjustment*.htm" access="IS_AUTHENTICATED_FULLY" /> 
+		<intercept-url pattern="/*PDF*.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*XLS*.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*TxnStatement*.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*Chart*.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*Report*.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/searchPendingTxns.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/txnApprove.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/txnReject.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/txnCancel.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*TxnSummary*.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/getRejectedReason.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*cancellation*.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*Reversal*.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*External*.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*password*.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/changePasswordForm.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/showHelpDeskConfig.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/saveHelpDesk.htm" access="IS_AUTHENTICATED_FULLY" />		
+		<intercept-url pattern="/searchAgent.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/viewAgent.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/editAgent.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/searchAgentPage.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/saveAgent.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/viewCustomer.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/searchCustomer.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/editCustomer.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/searchCustomerPage.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/saveCustomer.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/apprOrRejectCust.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/searchQRCodeForm.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/*HelpDesk*.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/getTxnSummaryDashBoard.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/uploadTrnsactionFile.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/showFailedFiles.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/commissionSplitForm.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/setCommissionSplits.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/viewSmsDetails.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/searchCustomerData.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/searchTxnMerchantData.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/exportToXlsMerchantCommisionReport.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/exportToPdfMerchantCommisionReport.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/showTxnMerchantData.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/cusAppCommReport.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/bulkpaymentpartnerPartner.htm" access="IS_AUTHENTICATED_FULLY" />
+		
+		
+		<intercept-url pattern="/exportToXlsForBankFloatDeposit.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/exportToPdfForBankFloatDeposit.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/bankFloatDeposit.htm" access="IS_AUTHENTICATED_FULLY" />
+		
+		<intercept-url pattern="/exportToXlsForNonRegUssdCustomer.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/exportToPdfForNonRegUssdCustomer.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/nonRegUssdCustomer.htm" access="IS_AUTHENTICATED_FULLY" />
+		
+		<intercept-url pattern="/exportToXlsForTransactionVolume.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/exportToPdfForTransactionVolume.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/transactionVolume.htm" access="IS_AUTHENTICATED_FULLY" />
+		
+		<intercept-url pattern="/addSmsCampaign.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/sendSmsCampaign.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/searchAgentCashOut.htm" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/validateAgentCashOut.htm" access="IS_AUTHENTICATED_FULLY" />
+			</filter-security-metadata-source>
+		</beans:property>
+	</beans:bean>
+
+	<beans:bean id="authenticationEntryPoint"
+		class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+		<beans:property name="loginFormUrl" value="/sessionTimeOut.htm" />
+	</beans:bean>
+	<beans:bean id="accessDeniedHandler"
+		class="org.springframework.security.web.access.AccessDeniedHandlerImpl">
+		<beans:property name="errorPage" value="/accessDenied.htm" />
+	</beans:bean>
+
+	<beans:bean id="accessDecisionManager"
+		class="org.springframework.security.access.vote.AffirmativeBased">
+		<beans:property name="decisionVoters">
+			<beans:list>
+				<beans:bean class="org.springframework.security.access.vote.RoleVoter" />
+				<beans:bean
+					class="org.springframework.security.access.vote.AuthenticatedVoter" />
+			</beans:list>
+		</beans:property>
+	</beans:bean>
+
+	<beans:bean id="authenticationManager"
+		class="org.springframework.security.authentication.ProviderManager">
+		<beans:property name="providers" ref="daoAuthenticationProvider" />
+	</beans:bean>
+
+	<beans:bean id="daoAuthenticationProvider"
+		class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+		<beans:property name="userDetailsService" ref="webUserService" />
+		<beans:property name="saltSource" ref="passwordEncoder" />
+		<beans:property name="passwordEncoder" ref="passwordEncoder" />
+	</beans:bean>
+	
+	<beans:bean id="webUserService" class="com.eot.banking.service.WebUserServiceImpl">
+		<beans:property name="webUserDao" ref="webUserDao" />
+		<beans:property name="roleAndPrivilegeDao" ref="roleAndPrivilegeDao" />
+	</beans:bean>
+
+	<beans:bean id="passwordEncoder"
+		class="com.eot.banking.utils.SHA1PasswordEncoder">
+	</beans:bean>
+	<beans:bean
+		class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<beans:property name="targetClass"
+			value="org.springframework.security.core.context.SecurityContextHolder" />
+		<beans:property name="targetMethod" value="setStrategyName" />
+		<beans:property name="arguments" value="MODE_INHERITABLETHREADLOCAL" />
+	</beans:bean>
+
+	<beans:bean id="multipartFilter"
+		class="org.springframework.web.multipart.support.MultipartFilter">
+		<beans:property name="multipartResolverBeanName" value="multipartResolver" />
+	</beans:bean>
+
+	<beans:bean id="multipartResolver" name="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- setting file size 100mb -->
+		<beans:property name="maxUploadSize" value="104857600" />
+	</beans:bean>
+
+</beans:beans>

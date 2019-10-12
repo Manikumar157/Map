@@ -1,0 +1,18 @@
+.padding-0 {
+	padding: 0px !important;
+}
+.tabs-list span {
+	margin-right: 15px;
+}
+.tabs-heading {
+	text-decoration: underline;
+}
+.tabs-list label {
+	font-weight: normal !important;
+}
+.box {
+	height: auto !important;
+	float: left;
+	width: 100%;
+	background: white !important;
+}

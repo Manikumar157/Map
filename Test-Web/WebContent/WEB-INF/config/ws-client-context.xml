@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	 http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx.xsd"
+     default-autowire="byName">
+
+	<bean id="messageFactory" class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory">
+	    <property name="messageFactory">
+	        <bean class="com.sun.xml.messaging.saaj.soap.ver1_1.SOAPMessageFactory1_1Impl"/>
+	    </property>
+	</bean>
+	 <bean id="reqMarshaller" class="org.springframework.oxm.castor.CastorMarshaller">
+        <property name="mappingLocations">
+        	<list>
+        		<value>classpath:castor-mapping-common.xml</value>
+        		<value>classpath:castor-mapping-banking-req.xml</value>
+        		<value>classpath:castor-mapping-basic-req.xml</value>
+        		<value>classpath:castor-mapping-utility-req.xml</value>
+        		<value>classpath:castor-mapping-sms.xml</value>
+        	</list>
+        </property>
+        <property name="suppressNamespaces" value="true"/>
+    </bean>
+    
+    <bean id="resMarshaller" class="org.springframework.oxm.castor.CastorMarshaller">
+        <property name="mappingLocations">
+        	<list>
+        		<value>classpath:castor-mapping-common.xml</value>
+        		<value>classpath:castor-mapping-banking-res.xml</value>
+        		<value>classpath:castor-mapping-basic-res.xml</value>
+        		<value>classpath:castor-mapping-utility-res.xml</value>
+        		<value>classpath:castor-mapping-sms.xml</value>
+        	</list>
+        </property>
+        <property name="suppressNamespaces" value="true"/>
+    </bean>
+    
+    <bean id="utilityServicesCleintSub" class="com.eot.coreclient.webservice.UtilityServicesCleintSub">
+    	<property name="lookupPath" value="http://localhost:7070/EOT-Banking-Core/services/UtilityServices/"></property>
+    	<property name="webServiceTemplate" ref="webServiceTemplate"></property>
+    </bean>
+	
+	<bean id="bankingServiceClientStub" class="com.eot.coreclient.webservice.BankingServiceClientStub">
+    	<property name="lookupPath" value="http://localhost:7070/EOT-Banking-Core/services/BankingServices/"></property>
+    	<property name="webServiceTemplate" ref="webServiceTemplate"></property>
+    </bean>
+    
+    <bean id="basicBankingServiceClientStub" class="com.eot.coreclient.webservice.BasicBankingServiceClientStub">
+    	<property name="lookupPath" value="http://localhost:7070/EOT-Banking-Core/services/BasicBankingServices/"></property>
+    	<property name="webServiceTemplate" ref="webServiceTemplate"></property>
+    </bean>
+    
+    <bean id="smsServiceClientStub" class="com.eot.smsclient.webservice.SmsServiceClientStub">
+    	<property name="lookupPath" value="http://localhost:7070/EOT-SMS/services/SmsService/"></property>
+    	<property name="webServiceTemplate" ref="webServiceTemplate"></property>
+    </bean>
+    
+	<bean id="webServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate">
+        <constructor-arg ref="messageFactory"/>
+        <property name="marshaller" ref="reqMarshaller"/>
+        <property name="unmarshaller" ref="resMarshaller"/>
+        <property name="faultMessageResolver">
+        	<bean class="com.eot.webservice.axistocastortweaks.CastorFaultMessageResolver">
+        		<property name="unmarshaller" ref="reqMarshaller"/>
+        		<property name="xmlToExceptionMappings">
+        			<props>
+        				<prop key="Fault">com.eot.dtos.common.Fault</prop>
+        			</props>
+        		</property>
+        	</bean>
+        </property>
+    </bean>
+    
+</beans>

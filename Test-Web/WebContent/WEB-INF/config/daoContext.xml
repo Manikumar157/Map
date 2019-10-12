@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	http://www.springframework.org/schema/mvc
+	http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+	
+	<bean id="kmsHandle" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetObject">
+		    <bean class="com.eot.kms.RemoteBean">
+				<constructor-arg><value>10.133.26.108</value></constructor-arg>
+				<constructor-arg><value>9091</value></constructor-arg>
+				<constructor-arg><value>com.thinkways.kms.KMS</value></constructor-arg>
+				<constructor-arg><value>kms</value></constructor-arg>
+			</bean>
+			<!-- <bean class="com.eot.kms.RemoteBean">
+				<constructor-arg><value>192.168.68.73</value></constructor-arg>
+				<constructor-arg><value>9090</value></constructor-arg>
+				<constructor-arg><value>com.eot.kms.KMS</value></constructor-arg>
+				<constructor-arg><value>kms</value></constructor-arg>
+			</bean> -->
+		</property>
+		<property name="targetMethod"><value>getRemoteInstance</value></property>
+	</bean>
+
+	<bean id="appConfig" class="com.eot.banking.common.AppConfigurations">
+		<property name="appDownloadURL"><value>https://tiny.cc/</value></property>
+		<!-- <property name="appDownloadURL"><value>https://play.google.com/store/apps/details?id=com.mgurush.</value></property> -->
+		<property name="resultsPerPage"><value>10</value></property>
+		<property name="jasperPath"><value>/opt/reports/</value></property>
+		<property name="settlementFileLocation"><value>/opt/GIM/reports/settlement/</value></property>
+		<property name="mrhURL"><value>http://41.214.25.4/GIM-MRH/reInitiationRequestHandler/</value></property>
+		<property name="liveProfile"><value>http://10.172.30.221:8083/ubc/ussdgtw/liveprofile?</value></property>
+		<property name="whiteList"><value>http://10.172.30.221:8083/ubc/ussdgtw/whitelist?</value></property>
+		<property name="ussdPassword"><value>superNet!0</value></property>
+		<property name="reportsDownloadPath"><value>/opt/KifiyaFI/report/</value></property>
+		<property name="bulkPaymentReportDownloadPath"><value>/opt/bulk_payment/report/</value></property>
+		
+		<property name="mobileTxnTypeMap">
+			<map>
+				<entry key="10" value="activationHandler"/>
+				<entry key="15" value="changePinHandler"/>
+				<entry key="20" value="changeTxnPinHandler"/>
+				<entry key="25" value="profileUpdateHandler"/>
+				<entry key="37" value="addBankAccountHandler"/>
+				<entry key="45" value="confirmCardHandler"/>
+				<entry key="50" value="deleteCardHandler"/>
+				<entry key="65" value="reActivationHandler"/>
+				<entry key="70" value="resetPinHandler"/>
+				<entry key="75" value="resetTxnPinHandler"/>
+				<entry key="85" value="getCustomerAccountsHandler"/>
+				<entry key="95" value="depositHandler"/>
+				<entry key="98" value="txnStatementHandler"/>
+				<entry key="99" value="withdrawalHandler"/>
+				<entry key="115" value="AgentDepositHandler"/>
+				<entry key="116" value="AgentWithdrawalHandler"/>
+			</map>
+		</property>
+	</bean>
+	<bean id="wrapper" class=" com.eot.banking.utils.ExcelWrapper">  
+		
+	</bean>
+	
+	<bean id="locationDao" class="com.eot.banking.dao.impl.LocationDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="appConfig">
+			<ref bean="appConfig" />
+		</property>
+	</bean>
+	
+	<bean id="bankDao" class="com.eot.banking.dao.impl.BankDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="appConfig">
+			<ref bean="appConfig" />
+		</property>
+	</bean>
+	
+	<bean id="scManagementDao" class="com.eot.banking.dao.impl.SCManagementDaoImpl" >
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="appConfig">
+			<ref bean="appConfig" />
+		</property>
+	</bean>
+	
+	<bean id="transactionRulesDao" class="com.eot.banking.dao.impl.TransactionRulesDaoImpl" >
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="appConfig">
+			<ref bean="appConfig" />
+		</property>
+	</bean>
+	
+	<bean id="smsLogDao" class="com.eot.banking.dao.impl.SMSLogDaoImpl" >
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="appConfig">
+			<ref bean="appConfig" />
+		</property>
+	</bean>
+	
+	<bean id="webUserDao" class="com.eot.banking.dao.impl.WebUserDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="appConfig">
+			<ref bean="appConfig" />
+		</property>
+	</bean>
+
+	<bean id="customerDao" class="com.eot.banking.dao.impl.CustomerDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="appConfig">
+			<ref bean="appConfig" />
+		</property>
+	</bean>
+	
+	<!-- vinod chnage -->
+	<bean id="BusinessPartnerDao" class="com.eot.banking.dao.impl.BusinessPartnerDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="appConfig">
+			<ref bean="appConfig" />
+		</property>
+	</bean>
+	<!-- vinod chnage -->
+	
+	<bean id="stakeHolderDao" class="com.eot.banking.dao.impl.StakeHolderDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="appConfig">
+			<ref bean="appConfig" />
+		</property>
+	</bean>
+
+	<bean id="operatorDao" class="com.eot.banking.dao.impl.OperatorDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="appConfig">
+			<ref bean="appConfig" />
+		</property>
+	</bean>
+	
+	<bean id="transactionDao" class="com.eot.banking.dao.impl.TransactionDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="appConfig">
+			<ref bean="appConfig" />
+		</property>
+	</bean>
+	
+	<bean id="bankGroupDao" class="com.eot.banking.dao.impl.BankGroupDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="appConfig">
+			<ref bean="appConfig" />
+		</property>
+	</bean>
+	<bean id="billerDao" class="com.eot.banking.dao.impl.BillerDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="appConfig">
+			<ref bean="appConfig" />
+		</property>
+	</bean>
+	<bean id="auditLogDao" class="com.eot.banking.dao.impl.AuditLogDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="appConfig">
+			<ref bean="appConfig" />
+		</property>
+	</bean>
+	<bean id="accessLogDao" class="com.eot.banking.dao.impl.AccessLogDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="appConfig">
+			<ref bean="appConfig" />
+		</property>
+	</bean>
+	<bean id="applicationVersionDao" class="com.eot.banking.dao.impl.ApplicationVersionDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="appConfig">
+			<ref bean="appConfig" />
+		</property>
+	</bean>
+	<bean id="settlementDao" class="com.eot.banking.dao.impl.SettlementDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="appConfig">
+			<ref bean="appConfig" />
+		</property>
+	</bean><bean id="accountHeadMappingDao" class="com.eot.banking.dao.impl.AccountHeaderMappingDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="appConfig">
+			<ref bean="appConfig" />
+		</property>
+	</bean>
+	<bean id="roleAndPrivilegeDao" class="com.eot.banking.dao.impl.RoleAndPrivilegeDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="appConfig">
+			<ref bean="appConfig" />
+		</property>
+	</bean>
+	<bean id="merchantDao" class="com.eot.banking.dao.impl.MerchantDaoImpl" >
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="appConfig">
+			<ref bean="appConfig" />
+		</property>
+	</bean>
+	
+	<bean id="themeDao" class="com.eot.banking.dao.impl.ThemeDaoImpl" >
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="appConfig">
+			<ref bean="appConfig" />
+		</property>
+	</bean>
+	
+	<bean id="brandingDao" class="com.eot.banking.dao.impl.BrandingDaoImpl" >
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="appConfig">
+			<ref bean="appConfig" />
+		</property>
+	</bean>
+	
+	<bean id="bankTellerDao" class="com.eot.banking.dao.impl.BankTellerDaoImpl" >
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="appConfig">
+			<ref bean="appConfig" />
+		</property>
+	</bean>
+	<bean id="schedularDao" class="com.eot.banking.dao.impl.SchedularDaoImpl" >
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="appConfig">
+			<ref bean="appConfig" />
+		</property>
+	</bean>
+	
+	<bean id="dashboardDao" class="com.eot.banking.dao.impl.DashboardDaoImpl" >
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="appConfig">
+			<ref bean="appConfig" />
+		</property>
+	</bean>
+	
+	<bean id="fileProcessDao" class="com.eot.banking.dao.impl.FileProcessDaoImpl" >
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="appConfig">
+			<ref bean="appConfig" />
+		</property>
+	</bean>
+	<bean id="transactionDescDao" class="com.eot.banking.dao.impl.TransactionDescDaoImpl" >
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="appConfig">
+			<ref bean="appConfig" />
+		</property>
+	</bean>
+</beans>

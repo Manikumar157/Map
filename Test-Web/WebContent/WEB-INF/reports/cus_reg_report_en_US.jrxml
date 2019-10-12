@@ -1,0 +1,559 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="customer registration commission report" pageWidth="1800" pageHeight="842" columnWidth="1760" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="1001"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="userName" class="java.lang.String"/>
+	<parameter name="date" class="java.lang.String"/>
+	<field name="FirstName" class="java.lang.String"/>
+	<field name="LastName" class="java.lang.String"/>
+	<field name="BankName" class="java.lang.String"/>
+	<field name="Location" class="java.lang.String"/>
+	<field name="MobileNumber" class="java.lang.String"/>
+	<field name="amount" class="java.lang.String"/>
+	<field name="TransactionType" class="java.lang.Integer"/>
+	<field name="TransactionDate" class="java.sql.Timestamp"/>
+	<field name="SC" class="java.lang.String"/>
+	<field name="status" class="java.lang.Integer"/>
+	<field name="AgentCode" class="java.lang.String"/>
+	<field name="requestChannel" class="java.lang.String"/>
+	<field name="TransactionID" class="java.math.BigInteger"/>
+	<field name="AgentName" class="java.lang.String"/>
+	<field name="Agent_Code" class="java.lang.String"/>
+	<field name="AgentMobileNumber" class="java.lang.String"/>
+	<field name="SuperAgentName" class="java.lang.String"/>
+	<field name="SuperAgentCode" class="java.lang.String"/>
+	<field name="BusinessName" class="java.lang.String"/>
+	<variable name="customerName" class="java.lang.String">
+		<variableExpression><![CDATA[$F{FirstName}+" "+($F{LastName})]]></variableExpression>
+	</variable>
+	<variable name="mobileNumber" class="java.lang.String">
+		<variableExpression><![CDATA[$F{MobileNumber}.toString()]]></variableExpression>
+	</variable>
+	<variable name="transactionType" class="java.lang.String">
+		<variableExpression><![CDATA[$F{TransactionType}==95?"Deposit":$F{TransactionType}==99?"Withdrawl"
+:$F{TransactionType}==30?"Balance Enquiry":$F{TransactionType}==35?"Mini Statement"
+:$F{TransactionType}==98?"Transaction Statement":$F{TransactionType}==10?"Activation"
+:$F{TransactionType}==20?"Transaction Pin Change":$F{TransactionType}==55?"Transfer Direct"
+:$F{TransactionType}==70?"Reset Pin":$F{TransactionType}==75?"Reset Transaction Pin"
+:$F{TransactionType}==90?"Sale":$F{TransactionType}==80?"Top Up"
+:$F{TransactionType}==65?"Re-Activation":$F{TransactionType}==82?"Bill Payment"
+:$F{TransactionType}==83?"SMS Cash":$F{TransactionType}==15?"Login Pin Change"
+:$F{TransactionType}==60?"Void":$F{TransactionType}==61?"Reversal"
+:$F{TransactionType}==37?"Add Bank Account":$F{TransactionType}==40?"Add Card"
+:$F{TransactionType}==115?"Agent Deposit"
+:$F{TransactionType}==133?"Float Management"
+:$F{TransactionType}==116?"Agent Withdrawal"
+:$F{TransactionType}==120?"Commission Share"
+:$F{TransactionType}==39?"Cheque Status"
+:$F{TransactionType}==126?"SMS Cash Receive":$F{TransactionType}==122?"Receive Recipient"
+:$F{TransactionType}==127?"Validate mGurush Pay":$F{TransactionType}==128?"mGurush Pay"
+:$F{TransactionType}==129?"Forget Pin":$F{TransactionType}==130?"Confirm Pin"
+:$F{TransactionType}==39?"Cheque Status":$F{TransactionType}==137?"Cash In"
+:$F{TransactionType}==138?"Cash Out":$F{TransactionType}==139?"Set Up Application"
+:$F{TransactionType}==140?"Merchant Payout"
+:$F{TransactionType}==141?"Bulk Payment"
+:$F{TransactionType}==135?"Customer Approval Commission"
+:$F{TransactionType}==5?"Login":""]]></variableExpression>
+	</variable>
+	<variable name="transactionDate" class="java.lang.String">
+		<variableExpression><![CDATA[$F{TransactionDate}.toString()]]></variableExpression>
+	</variable>
+	<variable name="amount" class="java.lang.String">
+		<variableExpression><![CDATA[$F{amount}]]></variableExpression>
+	</variable>
+	<variable name="SC" class="java.lang.String">
+		<variableExpression><![CDATA[$F{SC}]]></variableExpression>
+	</variable>
+	<variable name="status" class="java.lang.String">
+		<variableExpression><![CDATA[$F{status} == 2000 ? "Success" : "Failed"]]></variableExpression>
+	</variable>
+	<variable name="Description" class="java.lang.String">
+		<variableExpression><![CDATA[$F{status} == 2000 ? "Success" : $F{status} == 2001 ? "System error"
+: $F{status} == 2002 ? "System error" : $F{status} == 2003 ? "System error"
+: $F{status} == 2004 ? "Operation not supported Error"
+: $F{status} == 2005 ? "Settlement File generation Error"
+: $F{status} == 2006 ? "Merchant Account and Customer Account same Error"
+: $F{status} == 2020 ? "Merchant does not have enough balance"
+: $F{status} == 2021 ? "Customer does not have enough balance"
+: $F{status} == 2022 ? "Payee account does not have enough balance"
+: $F{status} == 2023 ? "Voucher not available"
+: $F{status} == 2024 ? "Service Charge not defined"
+: $F{status} == 2025 ? "Transaction Rule not defined"
+: $F{status} == 2026 ? "Transaction amount exceeds the allowed limit"
+: $F{status} == 2027 ? "Cumulative Transaction Limit Exceeded"
+: $F{status} == 2028 ? "Number of transactions allowed for the period exceeded"
+: $F{status} == 2029 ? "Invalid Transaction Rule"
+: $F{status} == 2030 ? "No Balance in Wallet"
+: $F{status} == 2031 ? "Transaction Declined from HPS"
+: $F{status} == 2032 ? "Invalid CH-Pool"
+: $F{status} == 2033 ? "Unable to connect to Eot Card System"
+: $F{status} == 2034 ? "Transaction is already settled,so cannot be reversed"
+: $F{status} == 2035 ? "Account balance exceeded,Please contact customer care"
+: $F{status} == 2036 ? "Transaction Details not available"
+: $F{status} == 2037 ? "Balance Details not available"
+: $F{status} == 2038 ? "Customer and Merchant not in same Bank"
+: $F{status} == 2039 ? "Invalid Signature size"
+: $F{status} == 2040 ? "Invalid Id-Proof size"
+: $F{status} == 2041 ? "Mobile Number Registered already" : ""]]></variableExpression>
+	</variable>
+	<variable name="TransactionID" class="java.lang.String">
+		<variableExpression><![CDATA[$F{TransactionID}.toString()]]></variableExpression>
+	</variable>
+	<variable name="AgentName" class="java.lang.String">
+		<variableExpression><![CDATA[$F{AgentName}]]></variableExpression>
+	</variable>
+	<variable name="Agent_Code" class="java.lang.String">
+		<variableExpression><![CDATA[$F{Agent_Code}]]></variableExpression>
+	</variable>
+	<variable name="AgentMobileNumber" class="java.lang.String">
+		<variableExpression><![CDATA[$F{AgentMobileNumber}]]></variableExpression>
+	</variable>
+	<variable name="SuperAgentName" class="java.lang.String">
+		<variableExpression><![CDATA[$F{SuperAgentName}]]></variableExpression>
+	</variable>
+	<variable name="SuperAgentCode" class="java.lang.String">
+		<variableExpression><![CDATA[$F{SuperAgentCode}]]></variableExpression>
+	</variable>
+	<variable name="BusinessName" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="46" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Transparent" x="10" y="0" width="1521" height="45"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[mGurush]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="60" splitType="Stretch">
+			<staticText>
+				<reportElement x="10" y="3" width="1521" height="49"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Customer Registration Commission Details]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="129" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="9" y="96" width="47" height="33" backcolor="#CCCCCC"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SI No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="163" y="96" width="158" height="33" backcolor="#CCCCCC"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Commission Amount]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1125" y="96" width="141" height="33" backcolor="#CCCCCC"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Super Agent Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="868" y="96" width="102" height="33" backcolor="#CCCCCC"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Agent Code]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1266" y="96" width="143" height="33" backcolor="#CCCCCC"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Super Agent Code]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1409" y="96" width="122" height="33" backcolor="#CCCCCC"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Transaction Type]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1531" y="96" width="182" height="33" backcolor="#CCCCCC"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Transaction Date & Time]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="10" y="1" width="95" height="32" backcolor="#CCCCCC"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Logged in]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="105" y="1" width="136" height="32"/>
+				<box leftPadding="1">
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{userName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="1336" y="1" width="100" height="32" backcolor="#CCCCCC"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1436" y="1" width="95" height="32"/>
+				<box leftPadding="1">
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{date}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="970" y="96" width="155" height="33" backcolor="#CCCCCC"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Agent Mobile Number]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="765" y="96" width="103" height="33" backcolor="#CCCCCC"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Agent Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="56" y="96" width="107" height="33" backcolor="#CCCCCC"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Transaction Id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="623" y="96" width="142" height="33" backcolor="#CCCCCC"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Customer Mobile Number]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="503" y="96" width="120" height="33" backcolor="#CCCCCC"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Customer Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="321" y="96" width="182" height="33" backcolor="#CCCCCC"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Business Name]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="9" y="0" width="47" height="30"/>
+				<box leftPadding="1">
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="163" y="0" width="158" height="30"/>
+				<box leftPadding="5">
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{amount}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="970" y="0" width="155" height="30"/>
+				<box leftPadding="5">
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{AgentMobileNumber}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1125" y="0" width="141" height="30"/>
+				<box leftPadding="0">
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{SuperAgentName}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="868" y="0" width="102" height="30"/>
+				<box leftPadding="1" rightPadding="5">
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{Agent_Code}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MM-yyyy HH:mm:ss" isBlankWhenNull="true">
+				<reportElement x="1531" y="0" width="182" height="30"/>
+				<box leftPadding="1">
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.sql.Timestamp"><![CDATA[$F{TransactionDate}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1266" y="0" width="143" height="30"/>
+				<box leftPadding="1">
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{SuperAgentCode}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1409" y="0" width="122" height="30"/>
+				<box leftPadding="5">
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{transactionType}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="765" y="0" width="103" height="30"/>
+				<box leftPadding="1">
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{AgentName}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="56" y="0" width="107" height="30"/>
+				<box leftPadding="0">
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{TransactionID}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="623" y="0" width="142" height="30"/>
+				<box leftPadding="0">
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{mobileNumber}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="503" y="0" width="120" height="30"/>
+				<box leftPadding="0">
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{customerName}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="321" y="0" width="182" height="30"/>
+				<box leftPadding="5">
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{BusinessName}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="1273" y="34" width="23" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1296" y="34" width="24" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Of]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="1320" y="34" width="22" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

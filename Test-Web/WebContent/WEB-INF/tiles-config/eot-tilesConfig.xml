@@ -1,0 +1,535 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+    <definition name="base.definition"
+        template="/WEB-INF/jsp/layout/layoutTemplet.jsp">
+        <!-- <put-attribute name="title" value="mGurush" /> -->
+        <put-attribute name="header" value="/WEB-INF/jsp/layout/eotHeader.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/jsp/layout/eotMenu.jsp" />
+        <put-attribute name="body" value="" />
+        <put-attribute name="footer" value="/WEB-INF/jsp/layout/eotFooter.jsp" />
+    </definition>
+    <definition name="home.definition" template="/WEB-INF/jsp/layout/homeTemplate.jsp">
+        <put-attribute name="body" value="" />
+        <put-attribute name="footer" value="" />
+    </definition>
+    <definition name="base.ajaxTileDefinition" template="/WEB-INF/jsp/layout/ajaxTemplate.jsp">
+        <put-attribute name="body" value="" />
+    </definition>
+    <definition name="base.ajaxTileDefinition" template="/WEB-INF/jsp/layout/ajaxTemplate.jsp">
+        <put-attribute name="body" value="" />
+    </definition>
+    <definition name="txnSummary" extends="base.definition">
+        <!-- <put-attribute name="title" value="Contact Manager" />-->
+        <put-attribute name="body" value="/WEB-INF/jsp/txnSummary.jsp" />
+    </definition>
+    <definition name="login" extends="home.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/login.jsp" />
+    </definition>
+    
+    <definition name="pageNotFound" extends="home.definition">
+        <!-- <put-attribute name="title" value="Contact Manager" />-->
+        <put-attribute name="body" value="/WEB-INF/jsp/pageNotFound.jsp" />
+    </definition>
+    <definition name="currency" extends="base.definition">
+        <!-- <put-attribute name="title" value="Contact Manager" />-->
+        <put-attribute name="body" value="/WEB-INF/jsp/currency.jsp" />
+    </definition>
+        <definition name="helpDesk" extends="base.definition">
+        <!-- <put-attribute name="title" value="Contact Manager" />-->
+        <put-attribute name="body" value="/WEB-INF/jsp/helpDesk.jsp" />
+    </definition>
+    <definition name="welcome" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/welcome.jsp" />
+    </definition>
+    <definition name="clearingHouseManagement" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/clearingHouseManagement.jsp" />
+    </definition>
+    <definition name="addClearingHouse" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/addClearingHouse.jsp" />
+    </definition>
+    <definition name="viewChPoolInformation" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/viewChPoolInformation.jsp" />
+    </definition>
+    
+    <definition name="country" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/country.jsp" />
+    </definition>
+    <definition name="city" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/city.jsp" />
+    </definition>
+    <definition name="quarter" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/quarter.jsp" />
+    </definition>
+   
+    <definition name="bankGroup" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/bankGroup.jsp" />
+    </definition>
+    <definition name="bankManagement" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/bankManagement.jsp" />
+    </definition>
+    <definition name="addBank" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/addBank.jsp" />
+    </definition>
+    <definition name="addCard" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/addCard.jsp" />
+    </definition>
+    <definition name="searchBranch" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/searchBranch.jsp" />
+    </definition>
+    <definition name="addBranch" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/addBranch.jsp" />
+    </definition>
+    
+    <definition name="biller" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/biller.jsp" />
+    </definition>
+    <definition name="addBiller" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/addBiller.jsp" />
+    </definition>
+      <definition name="viewServiceChargeRule" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/viewServiceChargeRule.jsp" />
+    </definition>
+<!--     // vineeth change -->
+    
+    <definition name="operatorVoucher" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/operatorVoucher.jsp" />
+    </definition>
+    
+  <!--   // change over -->
+    <definition name="operator" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/operator.jsp" />
+    </definition>
+    <definition name="addOperator" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/addOperator.jsp" />
+    </definition>
+    <definition name="operatorDenomination" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/operatorDenomination.jsp" />
+    </definition>
+    <definition name="uploadVouchers" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/uploadVouchers.jsp" />
+    </definition>
+    <definition name="addOperatorCard" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/addOperatorCard.jsp" />
+    </definition>
+    
+    <definition name="stakeholder" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/stakeholder.jsp" />
+    </definition>
+    <definition name="webUser" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/webUser.jsp" />
+    </definition>
+    <definition name="addWebUser" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/addWebUser.jsp" />
+    </definition>
+    <definition name="viewWebUser" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/viewWebUser.jsp" />
+    </definition>
+    <definition name="interBankFee" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/interBankFee.jsp" />
+    </definition>
+    <definition name="listServiceChargeRules" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/listServiceChargeRules.jsp" />
+    </definition>
+    <definition name="serviceChargeRuleForm" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/serviceChargeRuleForm.jsp" />
+    </definition>
+    <definition name="listTransactionRules" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/listTransactionRules.jsp" />
+    </definition>
+    <definition name="transactionRuleForm" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/transactionRuleForm.jsp" />
+    </definition>
+    <definition name="viewCustomers" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/viewCustomers.jsp" />
+    </definition>
+    
+    <!-- vinod change -->
+     <definition name="viewBusinessPartner" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/viewBusinessPartner.jsp" />
+    </definition>
+    
+    <definition name="businesspartner" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/businesspartner.jsp" />
+    </definition>
+   <!-- vinod change -->
+   
+   <definition name="viewBusinessPartners" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/viewBusinessPartners.jsp" />
+    </definition>
+    <definition name="viewBusinessPartnersCommission" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/viewBusinessPartnersCommission.jsp" />
+    </definition>
+    <definition name="customerProfiles" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/customerProfiles.jsp" />
+    </definition>
+    
+    <definition name="viewTransactions" extends="base.ajaxTileDefinition">
+        <put-attribute name="body" value="/WEB-INF/jsp/viewTransactions.jsp" />
+    </definition>
+    <definition name="selectTransactionForm" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/selectTransactionForm.jsp" />
+    </definition>
+        <definition name="selectBusinessPartnerTransactionForm" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/selectBusinessPartnerTransactionForm.jsp" />
+    </definition>
+    
+    <definition name="viewRequests" extends="base.ajaxTileDefinition">
+        <put-attribute name="body" value="/WEB-INF/jsp/viewRequests.jsp" />
+    </definition>
+    <definition name="viewSMSLog" extends="base.ajaxTileDefinition">
+        <put-attribute name="body" value="/WEB-INF/jsp/viewSMSLog.jsp" />
+    </definition>
+    
+    <definition name="viewCustomer" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/viewCustomer.jsp" />
+    </definition>
+    <definition name="customer" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/customer.jsp" />
+    </definition>
+   
+   <definition name="addAgent" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/addAgent.jsp" />
+    </definition>
+     <definition name="viewAgents" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/viewAgents.jsp" />
+    </definition>
+    <definition name="viewAgent" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/viewAgent.jsp" />
+    </definition>
+    <definition name="agent" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/agent.jsp" />
+    </definition>
+    <!--  vineeth changes over -->
+    <definition name="viewSenelecBills" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/viewSenelecBills.jsp" />
+    </definition>
+    <definition name="viewPolicyDetails" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/viewPolicyDetails.jsp" />
+    </definition>
+    <definition name="searchAuditLog" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/searchAuditLog.jsp" />
+    </definition>
+    <definition name="accessLog" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/accessLog.jsp" />
+    </definition>
+    <definition name="applicationVersion" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/applicationVersion.jsp" />
+    </definition>
+    <definition name="applicationVersionDetails" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/applicationVersionDetails.jsp" />
+    </definition>
+    
+    <definition name="selectTransactionSupportForm" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/selectTransactionSupportForm.jsp" />
+    </definition>
+    <definition name="uploadTransactionDetails" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/uploadTransactionDetails.jsp" />
+    </definition>
+    
+    <definition name="transactionReport" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/transactionReport.jsp" />
+    </definition>
+    <definition name="report" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/report.jsp" />
+    </definition>
+    <definition name="transactionReports" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/transactionReports.jsp" />
+    </definition>
+    <definition name="adjustmentForm" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/adjustmentForm.jsp" />
+    </definition>
+    <definition name="viewAdjustmentTransaction" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/viewAdjustmentTransaction.jsp" />
+    </definition>
+    
+    <definition name="uploadReversalDetails" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/uploadReversalDetails.jsp" />
+    </definition>
+    <definition name="externalTransactions" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/externalTransactions.jsp" />
+    </definition>
+    <definition name="assignPrivilege" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/assignPrivilege.jsp" />
+    </definition>
+    <definition name="viewPageVisited" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/viewPageVisited.jsp" />
+    </definition>
+    <definition name="combo" extends="base.ajaxTileDefinition">
+        <put-attribute name="body" value="/WEB-INF/jsp/combo.jsp" />
+    </definition>
+    <definition name="combo1" extends="base.ajaxTileDefinition">
+        <put-attribute name="body" value="/WEB-INF/jsp/combo1.jsp" />
+    </definition>
+    <definition name="configurationPage" extends="base.ajaxTileDefinition">
+        <put-attribute name="body" value="/WEB-INF/jsp/configurationPage.jsp" />
+    </definition>
+
+    <definition name="tabMenuList" extends="base.ajaxTileDefinition">
+        <put-attribute name="body" value="/WEB-INF/jsp/tabMenuList.jsp" />
+    </definition>
+    <definition name="tabMenuIconList" extends="base.ajaxTileDefinition">
+        <put-attribute name="body" value="/WEB-INF/jsp/tabMenuIconList.jsp" />
+    </definition>
+
+    <definition name="forgotPassword" extends="home.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/forgotPassword.jsp" />
+    </definition>
+    <definition name="otp" extends="home.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/otp.jsp" />
+    </definition>
+    <definition name="changePasswordForm" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/changePasswordForm.jsp" />
+    </definition>
+    <definition name="transactionSupportForm" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/transactionSupportForm.jsp" />
+    </definition>
+    <definition name="transactionDetailsForm" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/transactionDetailsForm.jsp" />
+    </definition>
+    <definition name="customerMobileNum" extends="base.ajaxTileDefinition">
+        <put-attribute name="body" value="/WEB-INF/jsp/customerMobileNum.jsp" />
+    </definition>
+	 <definition name="ClearingHousePoolList" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/ClearingHousePoolList.jsp" />
+    </definition>
+     <definition name="viewTransactionRule" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/viewTransactionRule.jsp" />
+    </definition>
+    <definition name="pendingTransactions" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/pendingTransactions.jsp" />
+    </definition>
+    <definition name="cancellation" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/cancellation.jsp" />
+    </definition>
+    <definition name="transactionSupportReceipt" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/transactionSupportReceipt.jsp" />
+    </definition>
+     <definition name="transactionReceipt" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/transactionReceipt.jsp" />
+    </definition>
+     <definition name="transactionPrintReceipt" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/transactionPrintReceipt.jsp" />
+    </definition>
+     <definition name="transactionBusinessPartnerPrintReceipt" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/transactionBusinessPartnerPrintReceipt.jsp" />
+    </definition>
+    <definition name="viewCHPool" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/viewCHPool.jsp" />
+    </definition>
+     <definition name="exchangeRate" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/exchangeRate.jsp" />
+    </definition>
+    <definition name="locateUS" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/locateUS.jsp" />
+    </definition>
+    <definition name="viewMerchants" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/viewMerchants.jsp" />
+    </definition>
+    <definition name="merchant" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/merchant.jsp" />
+    </definition>
+    <definition name="viewMerchant" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/viewMerchant.jsp" />
+    </definition>
+    <definition name="viewOutlets" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/viewOutlets.jsp" />
+    </definition>
+    <definition name="viewRejectTransaction" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/viewRejectTransaction.jsp" />
+    </definition>
+    <definition name="outlet" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/outlet.jsp" />
+    </definition>
+    <definition name="viewOutlet" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/viewOutlet.jsp" />
+    </definition>
+    <definition name="searchTerminal" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/searchTerminal.jsp" />
+    </definition>
+    <definition name="addTerminal" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/addTerminal.jsp" />
+    </definition>
+    <definition name="viewTerminal" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/viewTerminal.jsp" />
+    </definition>
+     <definition name="provenience" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/provenience.jsp" />
+    </definition>
+    <definition name="addBankAccount" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/addBankAccount.jsp" />
+    </definition>
+    <definition name="addCustomerCard" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/addCustomerCard.jsp" />
+    </definition>
+    <definition name="showSmsAlertPackages" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/showSmsAlertPackages.jsp" />
+    </definition>
+    <definition name="addSMSAlert" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/addSMSAlert.jsp" />
+    </definition>
+     <definition name="smsSubscription" extends="base.ajaxTileDefinition">
+        <put-attribute name="body" value="/WEB-INF/jsp/smsSubscription.jsp" />
+    </definition>
+    <definition name="smsSubscribedDetails" extends="base.ajaxTileDefinition">
+        <put-attribute name="body" value="/WEB-INF/jsp/smsSubscribedDetails.jsp" />
+    </definition>
+    <definition name="smsPackageDetails" extends="base.ajaxTileDefinition">
+        <put-attribute name="body" value="/WEB-INF/jsp/smsPackageDetails.jsp" />
+    </definition>
+    <definition name="scSubscription" extends="base.ajaxTileDefinition">
+        <put-attribute name="body" value="/WEB-INF/jsp/scSubscription.jsp" />
+    </definition>
+     <definition name="scPackageDetails" extends="base.ajaxTileDefinition">
+        <put-attribute name="body" value="/WEB-INF/jsp/scPackageDetails.jsp" />
+    </definition>
+    <definition name="currentSCSubscription" extends="base.ajaxTileDefinition">
+        <put-attribute name="body" value="/WEB-INF/jsp/currentSCSubscription.jsp" />
+    </definition>
+    <definition name="showCurrencyConverter" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/showCurrencyConverter.jsp" />
+    </definition>
+     <definition name="confirmTransactionDetailsForm" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/confirmTransactionDetailsForm.jsp" />
+    </definition>
+      <definition name="remittance" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/remittance.jsp" />
+    </definition>
+     <!-- <definition name="dashBoard" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/dashBoard.jsp" />
+    </definition> added new dashboard-->
+    <definition name="txnDashBoard" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/txnDashBoard.jsp" />
+    </definition>
+    <definition name="txnSummaryDashBoard" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/txnSummaryDashBoard.jsp" />
+    </definition>
+    <definition name="changePassword" extends="home.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/changePassword.jsp" />
+    </definition>
+    <definition name="customerMenuConfigForm" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/customerMenuConfigForm.jsp" />
+    </definition>
+    <definition name="merchantMenuConfigForm" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/merchantMenuConfigForm.jsp" />
+    </definition>
+    <definition name="soleMerchantMenuConfigForm" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/soleMerchantMenuConfigForm.jsp" />
+    </definition>
+     <definition name="themeConfigForm" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/themeConfigForm.jsp" />
+    </definition>
+    <definition name="viewThemeConfigForm" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/viewThemeConfigForm.jsp" />
+    </definition>
+        <definition name="viewWebColorConfigForm" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/viewWebColorConfigForm.jsp" />
+    </definition>
+     <definition name="editThemeConfigForm" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/editThemeConfigForm.jsp" />
+    </definition>
+      <definition name="editWebColorConfigForm" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/editWebColorConfigForm.jsp" />
+    </definition>
+     <definition name="webColorConfigForm" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/webColorConfigForm.jsp" />
+    </definition>
+     <definition name="approveTxnPopup" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/approveTxnPopup.jsp" />
+    </definition>
+     <definition name="configurations" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/configurations.jsp" />
+    </definition>
+    
+    <definition name="editCustomerMenuConfigForm" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/editCustomerMenuConfigForm.jsp" />
+    </definition>
+    <definition name="editMerchantMenuConfigForm" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/editMerchantMenuConfigForm.jsp" />
+    </definition>
+    <definition name="editSoleMerchantMenuConfigForm" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/editSoleMerchantMenuConfigForm.jsp" />
+    </definition>
+    <definition name="addWebColorConfigForm" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/addWebColorConfigForm.jsp" />
+    </definition>
+    <!-- ************************** commission *************************  -->
+    <definition name="addCommission" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/addCommission.jsp" />
+    </definition>
+     <definition name="addCommissionForm" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/addCommissionForm.jsp" />
+    </definition>
+    <definition name="editCommission" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/editCommission.jsp" />
+    </definition>
+    <definition name="searchQRCodeForm" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/searchQRCodeForm.jsp" />
+    </definition>
+     <definition name="failedFilesListForm" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/failedFilesListForm.jsp" />
+    </definition>
+    
+     <!-- ************************** BulkPayment *************************  -->
+     <definition name="viewBulkPaymentPartners" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/viewBulkPaymentPartners.jsp" />
+    </definition>
+     <definition name="bulkpaymentpartner" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/bulkpaymentpartner.jsp" />
+    </definition>
+    <definition name="viewBulkPaymentPartner" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/viewBulkPaymentPartner.jsp" />
+    </definition>
+    <definition name="BulkPayDashBoard" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/BulkPayDashBoard.jsp" />
+    </definition>
+   
+   <definition name="commisionSplits" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/commisionSplits.jsp" />
+    </definition>
+    <definition name="bulkPayTxnReport" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/bulkPayTxnReport.jsp" />
+    </definition>
+    <definition name="customerAppReport" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/customerAppReport.jsp" />
+    </definition>
+     <definition name="accountTransfer" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/accountTransfer.jsp" />
+    </definition>
+        <definition name="merchantAppReport" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/merchantAppReport.jsp" />
+    </definition>
+    <definition name="accountToAccountDetailForm" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/accountToAccountDetailForm.jsp" />
+    </definition>
+      <definition name="accountTransferReceipt" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/accountTransferReceipt.jsp" />
+    </definition>
+      <definition name="viewSmsDetails" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/viewSmsDetails.jsp" />
+    </definition>
+    <definition name="bankFloatDeposit" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/bankFloatDeposit.jsp" />
+    </definition>
+        <definition name="nonRegUssdCustomer" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/nonRegUssdCustomer.jsp" />
+    </definition>
+        <definition name="transactionVolumeReport" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/transactionVolumeReport.jsp" />
+    </definition>
+       <definition name="addSmsCampaign" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/addSmsCampaign.jsp" />
+    </definition>
+	       <definition name="addAgentCashOut" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/addAgentCashOut.jsp" />
+    </definition>
+     <definition name="confirmAgentCashOut" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/confirmAgentCashOut.jsp" />
+    </definition>
+    <definition name="agentCashOutReceipt" extends="base.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/agentCashOutReceipt.jsp" />
+    </definition>
+    
+</tiles-definitions>

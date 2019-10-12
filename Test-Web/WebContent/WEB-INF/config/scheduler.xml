@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN/EN" "http://www.springframework.org/dtd/spring-beans.dtd" >
+<beans>
+
+	<import resource="../EOT-Web-servlet.xml"/>
+	
+	<!-- <bean id="schedulerTask" class="com.eot.banking.service.CommissionDistributionServiceImpl">
+		
+		<property name="fileProcessService">
+			<ref bean="fileProcessService" />
+		</property>
+		
+		<property name="cardPersonalizationDir" value="/opt/KifiyaFI/uploadXLS"></property>
+	</bean> -->
+	
+	<bean id="schedulerTask1"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject"> <ref bean="schedulerTask" /> </property>
+		<property name="targetMethod"> <value>processCommission</value> </property>
+		<property name="concurrent"> <value>false</value> </property>
+	</bean>
+	<bean id="schedulerTask2"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject"> <ref bean="schedularService" /> </property>
+		<property name="targetMethod"> <value>pendingTxnCheck</value> </property>
+		<property name="concurrent"> <value>false</value> </property>
+	</bean>
+	<bean id="schedulerCommissionDeposite"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject"> <ref bean="schedulerTaskDeposit" /> </property>
+		<property name="targetMethod"> <value>processCommission</value> </property>
+		<property name="concurrent"> <value>false</value> </property>
+	</bean>
+	
+	<bean id="schedulerSuspendNotFullKYC"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject"> <ref bean="SuspendNotFullKYCService" /> </property>
+		<property name="targetMethod"> <value>suspendNotFullKYC</value> </property>
+		<property name="concurrent"> <value>false</value> </property>
+	</bean>
+	
+	<bean id="commissionShareDeposit"
+		class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail"> <ref bean="schedulerCommissionDeposite" /> </property>
+		<property name="cronExpression"> <value>0 0/6 * * * ?</value> </property>
+	</bean>
+	
+
+	<bean id="commissionShare"
+		class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail"> <ref bean="schedulerTask1" /> </property>
+		<!-- <property name="cronExpression"> <value>0 0/1 * * * ?</value> </property> -->	
+		<property name="cronExpression"> <value>0 0/30 * * * ?</value> </property>
+	</bean>
+	
+	<bean id="schedularTimeChecker"
+		class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail"> <ref bean="schedulerTask2" /> </property>
+		<property name="cronExpression"> <value>0 0/5 * * * ?</value> </property>
+	</bean>
+	
+	<bean id="schedularNotFullKYCIn90Days"
+		class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail"> <ref bean="schedulerSuspendNotFullKYC" /> </property>
+		<property name="cronExpression"> <value>0/10 * * * * ?</value> </property>
+	</bean>
+	
+	
+	
+	<bean
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<!-- Add triggers here-->
+				<ref bean="commissionShare" />
+				<!-- <ref bean="commissionShareDeposit" /> -->
+				<ref bean="schedularTimeChecker" />
+				<ref bean="schedularNotFullKYCIn90Days"/>
+			</list>
+		</property>
+	</bean>
+</beans>

@@ -1,0 +1,116 @@
+<ehcache>
+
+	<defaultCache 
+		maxElementsInMemory="10" 
+		eternal="false"
+		timeToIdleSeconds="0" 
+		timeToLiveSeconds="600" 
+		overflowToDisk="false" />
+	
+	<cache
+	    name="org.hibernate.cache.StandardQueryCache"
+	    maxElementsInMemory="1000"
+	    eternal="false"
+	    timeToIdleSeconds="0" 
+		timeToLiveSeconds="600" 
+	    overflowToDisk="false"/>
+    
+	<cache name="com.eot.banking.entity.TransactionType" 
+		maxElementsInMemory="100"
+		eternal="false" 
+		timeToIdleSeconds="0" 
+		timeToLiveSeconds="600"
+		overflowToDisk="false" />
+		
+	<cache name="com.eot.banking.entity.TimeZone" 
+		maxElementsInMemory="100"
+		eternal="false" 
+		timeToIdleSeconds="0" 
+		timeToLiveSeconds="600"
+		overflowToDisk="false" />
+		
+	<cache name="com.eot.banking.entity.Quarter" 
+		maxElementsInMemory="100"
+		eternal="false" 
+		timeToIdleSeconds="0" 
+		timeToLiveSeconds="600"
+		overflowToDisk="false" />		
+		
+	<cache name="com.eot.banking.entity.Operator" 
+		maxElementsInMemory="100"
+		eternal="false" 
+		timeToIdleSeconds="0" 
+		timeToLiveSeconds="600"
+		overflowToDisk="false" />
+		
+	<cache name="com.eot.banking.entity.Currency" 
+		maxElementsInMemory="100"
+		eternal="false" 
+		timeToIdleSeconds="0" 
+		timeToLiveSeconds="600"
+		overflowToDisk="false" />
+		
+	<cache name="com.eot.banking.entity.Country" 
+		maxElementsInMemory="100"
+		eternal="false" 
+		timeToIdleSeconds="0" 
+		timeToLiveSeconds="600"
+		overflowToDisk="false" />
+		
+	<cache name="com.eot.banking.entity.ClearingHousePool" 
+		maxElementsInMemory="100"
+		eternal="false" 
+		timeToIdleSeconds="0" 
+		timeToLiveSeconds="600"
+		overflowToDisk="false" />
+		
+	<cache name="com.eot.banking.entity.ClearingHousePoolMember" 
+		maxElementsInMemory="100"
+		eternal="false" 
+		timeToIdleSeconds="0" 
+		timeToLiveSeconds="600"
+		overflowToDisk="false" />
+		
+	<cache name="com.eot.banking.entity.City" 
+		maxElementsInMemory="100"
+		eternal="false" 
+		timeToIdleSeconds="0" 
+		timeToLiveSeconds="600"
+		overflowToDisk="false" />
+		
+	<cache name="com.eot.banking.entity.Branch" 
+		maxElementsInMemory="100"
+		eternal="false" 
+		timeToIdleSeconds="0" 
+		timeToLiveSeconds="600"
+		overflowToDisk="false" />
+	
+	<cache name="com.eot.banking.entity.BankAgreementModel" 
+		maxElementsInMemory="100"
+		eternal="false" 
+		timeToIdleSeconds="0" 
+		timeToLiveSeconds="600"
+		overflowToDisk="false" />
+		
+	<cache name="com.eot.banking.entity.Bank" 
+		maxElementsInMemory="100"
+		eternal="false" 
+		timeToIdleSeconds="0" 
+		timeToLiveSeconds="600"
+		overflowToDisk="false" />
+		
+	<cache name="com.eot.banking.entity.ServiceChargeSplit" 
+		maxElementsInMemory="100"
+		eternal="false" 
+		timeToIdleSeconds="0" 
+		timeToLiveSeconds="600"
+		overflowToDisk="false" />
+		
+	<cache name="com.eot.banking.entity.StakeHolder" 
+		maxElementsInMemory="100"
+		eternal="false" 
+		timeToIdleSeconds="0" 
+		timeToLiveSeconds="600"
+		overflowToDisk="false" />		
+		
+</ehcache>

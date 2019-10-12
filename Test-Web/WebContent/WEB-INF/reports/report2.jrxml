@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report2" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select * from account where AccountNumber='1000000000108']]>
+	</queryString>
+	<field name="AccountNumber" class="java.lang.String"/>
+	<field name="AccountType" class="java.lang.Integer"/>
+	<field name="ReferenceType" class="java.lang.Integer"/>
+	<field name="ReferenceID" class="java.lang.String"/>
+	<field name="Active" class="java.lang.Integer"/>
+	<field name="Alias" class="java.lang.String"/>
+	<field name="CurrentBalance" class="java.lang.Double"/>
+	<field name="CurrentBalanceType" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="36" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="3" width="555" height="33" forecolor="#FF0099"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Trans Details]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="229" splitType="Stretch">
+			<staticText>
+				<reportElement x="82" y="27" width="165" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Acc Num]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="342" y="27" width="165" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{AccountNumber}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="342" y="47" width="165" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{AccountType}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="342" y="67" width="165" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{ReferenceType}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="342" y="87" width="165" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ReferenceID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="342" y="107" width="165" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{Active}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="342" y="127" width="165" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Alias}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="82" y="47" width="165" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Acc Type]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="82" y="67" width="165" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ref Type]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="82" y="87" width="165" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ref Id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="82" y="127" width="165" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Alias]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="82" y="107" width="165" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Status]]></text>
+			</staticText>
+			<line>
+				<reportElement x="69" y="4" width="451" height="1"/>
+			</line>
+			<line>
+				<reportElement x="69" y="159" width="452" height="1"/>
+			</line>
+			<line>
+				<reportElement x="68" y="4" width="1" height="155"/>
+			</line>
+			<line>
+				<reportElement x="520" y="5" width="1" height="155"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

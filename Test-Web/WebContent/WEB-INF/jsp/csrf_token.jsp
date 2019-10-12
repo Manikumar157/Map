@@ -1,0 +1,1 @@
+<input type="hidden" id="csrfToken" name="csrfToken" value="${sessionScope.csrfToken}" />
